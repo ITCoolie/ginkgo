@@ -30,4 +30,4 @@ ginkgo/
 
 
 # 项目协议
-遵从 <MIT License>
+  "MIT License"
