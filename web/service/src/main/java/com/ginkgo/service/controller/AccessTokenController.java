@@ -1,5 +1,6 @@
 package com.ginkgo.service.controller;
 
+import com.ginkgo.service.enums.STATUS;
 import com.ginkgo.service.service.AccessTokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,6 @@ public class AccessTokenController {
 
     @GetMapping("/request")
     public Integer RequestToken() {
-        return 0;
+        return STATUS.OK;
     }
 }

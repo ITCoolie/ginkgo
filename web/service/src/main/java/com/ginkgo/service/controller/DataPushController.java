@@ -2,6 +2,7 @@ package com.ginkgo.service.controller;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ginkgo.service.Config.DBConfig;
+import com.ginkgo.service.enums.STATUS;
 import com.ginkgo.service.service.AccessTokenService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,14 +21,11 @@ import org.apache.commons.lang3.*;
 public class DataPushController {
 
     @Autowired
-    private DBConfig dbConfig;
-
-    @Autowired
     private AccessTokenService tokenService;
 
     /*Push full data of everyday*/
     @GetMapping("/push_full_data")
     public Integer PushFullData(@RequestParam String token, @RequestParam String date) {
-        return 0;
+        return STATUS.OK;
     }
 }
