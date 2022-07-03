@@ -1,9 +1,11 @@
 package com.ginkgo.service.Config;
 
 import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Data
+@ConfigurationProperties(prefix = "config.db")
 @Component
 public class DBConfig {
 
@@ -15,5 +17,5 @@ public class DBConfig {
 
     public String password;
 
-    public String driver = "com.mysql.cj.jdbc.Driver";
+    public String driver;
 }

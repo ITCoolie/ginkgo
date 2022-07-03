@@ -3,10 +3,7 @@ package com.ginkgo.service.controller;
 import com.ginkgo.service.enums.STATUS;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /* Controller of user login logout*/
 @Slf4j
@@ -14,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/user/v1")
 public class LoginController {
 
-    @GetMapping("/login")
-    public Integer login(@RequestParam String account, @RequestParam String password) {
-        if (StringUtils.isNoneEmpty(account) || StringUtils.isNoneEmpty(password)) {
-            //check account and password
-            return STATUS.INVALID_ACCOUNT;
-        }
+    @PostMapping("/login")
+    public Integer login(@RequestBody String data) {
+        //if (StringUtils.isNoneEmpty(account) || StringUtils.isNoneEmpty(password)) {
+        //    //check account and password
+        //    return STATUS.INVALID_ACCOUNT;
+        //}
         return 0;
     }
 

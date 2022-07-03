@@ -2,6 +2,7 @@ package com.ginkgo.service.controller;
 
 import com.ginkgo.service.enums.STATUS;
 import com.ginkgo.service.service.AccessTokenService;
+import com.ginkgo.service.service.MybatisUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,4 +21,5 @@ public class AccessTokenController {
     public Integer RequestToken() {
         return STATUS.OK;
     }
+
 }

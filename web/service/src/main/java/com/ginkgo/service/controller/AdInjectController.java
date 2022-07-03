@@ -3,10 +3,7 @@ package com.ginkgo.service.controller;
 import com.ginkgo.service.enums.STATUS;
 import com.ginkgo.service.service.AccessTokenService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -21,7 +18,7 @@ public class AdInjectController {
 
     /*修改投放预算*/
     @PostMapping("/budget/modify")
-    public Integer ModifyBudget(String token, String data) {
+    public Integer ModifyBudget(@RequestParam String token, @RequestBody String data) {
         Integer ret = accessService.checkValid(token);
         if (ret != STATUS.OK) {
             return ret;

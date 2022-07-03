@@ -17,7 +17,7 @@ import org.apache.commons.lang3.*;
 /* Controller of full data pushment and increment data pushment*/
 @Slf4j
 @RestController
-@RequestMapping(path = "/data/v1")
+@RequestMapping(path = "/data/push/v1")
 public class DataPushController {
 
     @Autowired
