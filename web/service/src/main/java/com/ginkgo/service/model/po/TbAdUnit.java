@@ -16,6 +16,10 @@ public class TbAdUnit implements Serializable {
 
     private String author;
 
+    private Long  budget;       //投放计划金额预算(分)
+
+    private Long cost;          //投放计划已消耗(分)
+
     private Integer status;
 
     private String create_at;
