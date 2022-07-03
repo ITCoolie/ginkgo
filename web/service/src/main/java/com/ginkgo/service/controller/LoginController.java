@@ -1,15 +1,21 @@
 package com.ginkgo.service.controller;
 
 import com.ginkgo.service.enums.STATUS;
+import com.ginkgo.service.service.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /* Controller of user login logout*/
 @Slf4j
 @RestController
 @RequestMapping(path = "/user/v1")
 public class LoginController {
+
+    @Resource
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public Integer login(@RequestBody String data) {
@@ -22,10 +28,11 @@ public class LoginController {
 
     @GetMapping("/logout")
     public Integer logout(@RequestParam String token) {
-        if (StringUtils.isNoneEmpty(token)) {
+        if (!tokenService.checkValid(token)) {
             return STATUS.INVALID_TOKEN;
         }
-        return STATUS.OK;
+        Integer ret = tokenService.logout(token);
+        return ret;
     }
 
     /*heart beat request api*/

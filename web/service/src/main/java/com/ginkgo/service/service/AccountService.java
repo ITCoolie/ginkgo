@@ -19,7 +19,7 @@ public class AccountService {
     private AccountMapper mapper;
 
     @Resource
-    private AccessTokenService tokenService;
+    private TokenService tokenService;
 
     public Integer login(String account, String password) {
         List<TbAccount> list = mapper.query(account, password);
