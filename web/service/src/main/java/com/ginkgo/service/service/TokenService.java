@@ -39,6 +39,7 @@ public class TokenService {
                 }
             }
             catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
         return false;
@@ -46,7 +47,8 @@ public class TokenService {
 
     public Integer NewToken(String account) {
         String token = IDCreator.newId();
-        tokenMap.put(token, new Date().toString());
+        SimpleDateFormat sdf = new SimpleDateFormat(config.time_format);
+        tokenMap.put(token, sdf.format(new Date()));
         return STATUS.OK;
     }
 
@@ -55,7 +57,8 @@ public class TokenService {
         if (!checkValid(token)) {
             return STATUS.INVALID_TOKEN;
         }
-        tokenMap.put(token, new Date().toString(config.time_format));
+        SimpleDateFormat sdf = new SimpleDateFormat(config.time_format);
+        tokenMap.put(token, sdf.format(new Date()));
         return STATUS.OK;
     }
 

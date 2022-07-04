@@ -2,8 +2,10 @@ package com.ginkgo.service.Config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 @Data
+@Component
 @ConfigurationProperties(prefix = "config")
 public class Config {
 
@@ -11,5 +13,5 @@ public class Config {
 
     public String date_format;
 
-    public String login_keep_time;
+    public Integer login_keep_time;
 }
