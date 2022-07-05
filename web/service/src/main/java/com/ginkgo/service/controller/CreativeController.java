@@ -1,5 +1,6 @@
 package com.ginkgo.service.controller;
 
+import com.ginkgo.service.Result;
 import com.ginkgo.service.Utils.IDCreator;
 import com.ginkgo.service.enums.STATUS;
 import com.ginkgo.service.service.TokenService;
@@ -20,9 +21,9 @@ public class CreativeController {
     private TokenService accessService;
 
     @PostMapping("/upload_file")
-    public Integer UploadFile(@RequestParam String token, @RequestParam("file") MultipartFile file) {
+    public Result UploadFile(@RequestParam String token, @RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
-            return -101;
+            return new Result(STATUS.UPLOAD_FILE_EMPTY);
         }
 
         String filename = file.getOriginalFilename();
@@ -40,7 +41,7 @@ public class CreativeController {
 
         try {
             file.transferTo(dest);
-            return STATUS.OK;
+            return new Result(STATUS.OK);
         }
         catch (IllegalStateException stateEx) {
             stateEx.printStackTrace();
@@ -48,6 +49,6 @@ public class CreativeController {
         catch (IOException ioEx) {
             ioEx.printStackTrace();
         }
-          return -102;
+        return new Result(STATUS.UPLOAD_STORE_FILE_WRONG);
     }
 }

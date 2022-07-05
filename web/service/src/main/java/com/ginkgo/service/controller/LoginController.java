@@ -1,6 +1,8 @@
 package com.ginkgo.service.controller;
 
+import com.ginkgo.service.Result;
 import com.ginkgo.service.enums.STATUS;
+import com.ginkgo.service.service.AccountService;
 import com.ginkgo.service.service.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -17,29 +19,36 @@ public class LoginController {
     @Resource
     private TokenService tokenService;
 
-    @PostMapping("/login")
-    public Integer login(@RequestBody String data) {
-        //if (StringUtils.isNoneEmpty(account) || StringUtils.isNoneEmpty(password)) {
-        //    //check account and password
-        //    return STATUS.INVALID_ACCOUNT;
-        //}
-        return 0;
+    @Resource
+    private AccountService accountService;
+
+    @GetMapping("/login")
+    public Result login(@RequestBody String data) {
+        String user = "";
+        String password = "";
+        if (StringUtils.isEmpty(user) || StringUtils.isEmpty(password)) {
+            return new Result(STATUS.INVALID_ACCOUNT);
+        }
+
+        String token = accountService.login(user, password);
+        if (StringUtils.isEmpty(token)) {
+            return new Result(STATUS.INVALID_ACCOUNT);
+        }
+        Result result = new Result(STATUS.OK);
+        result.setData(token);
+        return result;
     }
 
     @GetMapping("/logout")
-    public Integer logout(@RequestParam String token) {
-        if (!tokenService.checkValid(token)) {
-            return STATUS.INVALID_TOKEN;
-        }
-        Integer ret = tokenService.logout(token);
-        return ret;
+    public Result logout(@RequestParam String token) {
+        return new Result(tokenService.logout(token));
     }
 
     /*heart beat request api*/
     @GetMapping("/tick")
-    public Integer tick(@RequestParam String token) {
-
-        return STATUS.OK;
+    public Result tick(@RequestParam String token) {
+        Integer ret = tokenService.Tick(token);
+        return new Result(ret);
     }
 }
 

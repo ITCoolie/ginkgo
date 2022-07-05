@@ -21,13 +21,12 @@ public class AccountService {
     @Resource
     private TokenService tokenService;
 
-    public Integer login(String account, String password) {
+    public String login(String account, String password) {
         List<TbAccount> list = mapper.query(account, password);
         if (list == null || list.size() == 0) {
-            return STATUS.INVALID_ACCOUNT;
+            return "";
         }
-
-        Integer result = tokenService.NewToken(account);
-        return STATUS.OK;
+        String token = tokenService.NewToken(list.get(0));
+        return token;
     }
 }

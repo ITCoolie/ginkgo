@@ -1,5 +1,6 @@
 package com.ginkgo.service.controller;
 
+import com.ginkgo.service.Result;
 import com.ginkgo.service.enums.STATUS;
 import com.ginkgo.service.service.TokenService;
 
@@ -21,7 +22,8 @@ public class DataPushController {
 
     /*Push full data of everyday*/
     @GetMapping("/push_full_data")
-    public Integer PushFullData(@RequestParam String token, @RequestParam String date) {
-        return STATUS.OK;
+    public Result PushFullData(@RequestParam String token, @RequestParam String date) {
+
+        return new Result(STATUS.OK);
     }
 }

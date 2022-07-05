@@ -3,12 +3,14 @@ package com.ginkgo.service.service;
 import com.ginkgo.service.Config.Config;
 import com.ginkgo.service.Utils.IDCreator;
 import com.ginkgo.service.enums.STATUS;
+import com.ginkgo.service.model.po.TbAccount;
 import org.springframework.stereotype.Component;
 
 import org.apache.commons.lang3.*;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -45,11 +47,11 @@ public class TokenService {
         return false;
     }
 
-    public Integer NewToken(String account) {
+    /*创建一个新的token*/
+    public String NewToken(TbAccount account) {
         String token = IDCreator.newId();
-        SimpleDateFormat sdf = new SimpleDateFormat(config.time_format);
-        tokenMap.put(token, sdf.format(new Date()));
-        return STATUS.OK;
+        Collections.singletonMap(token, account);
+        return token;
     }
 
     /*更新最近登录时间*/

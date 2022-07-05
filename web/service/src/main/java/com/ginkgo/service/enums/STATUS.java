@@ -10,4 +10,9 @@ public interface STATUS {
     Integer INVALID_TOKEN = -2;
 
     Integer PARAMETER_WRONG = -3;
+
+    //UPLOAD FILE
+    Integer UPLOAD_FILE_EMPTY = -101;
+
+    Integer UPLOAD_STORE_FILE_WRONG = -102;
 }
